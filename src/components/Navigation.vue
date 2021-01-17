@@ -22,7 +22,8 @@
         appsList: [
           {name: 'counter', isActive: false},
           {name: 'notes', isActive: false},
-          {name: 'math trainer', isActive: false}
+          {name: 'math trainer', isActive: false},
+          {name: 'calculator', isActive: false}
         ],
       }
     },

@@ -5,6 +5,7 @@
     <app-counter v-if="state == 'counter'"></app-counter>
     <app-notes v-if="state == 'notes'"></app-notes>
     <app-math-trainer v-if="state == 'math trainer'"></app-math-trainer>
+    <app-calculator v-if="state == 'calculator'"></app-calculator>
   </div>
 
 </template>
@@ -14,6 +15,7 @@
   import AppCounter from './components/Counter.vue'
   import AppNotes from './components/Notes.vue'
   import AppMathTrainer from './components/MathTrainer.vue'
+  import AppCalculator from './components/Calculator.vue'
 
   export default {
     name: 'App',
@@ -21,7 +23,8 @@
       AppNavigation,
       AppCounter,
       AppNotes,
-      AppMathTrainer
+      AppMathTrainer,
+      AppCalculator,
     },
     
     

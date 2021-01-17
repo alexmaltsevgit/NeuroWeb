@@ -50,8 +50,8 @@
   }
   
   .btn {
-    color: #7d87ff;
-    border-color: #7d87ff;
+    color: #000;
+    border-color: #000;
   }
   
   .success-msg {
