@@ -3,18 +3,21 @@
   <div class="card center">
     <h1>Calculator</h1>
     <div class="calculator">
-      <div class="output" :style="{fontSize: fontSize + 'rem'}">{{ operand }}</div>
+      <div class="output">
+        <p class="buffer">{{ buffer }}</p>
+        <p :style="{fontSize: fontSize + 'rem'}">{{ operand }}</p>
+      </div>
       <table>
         <tr>
-          <td><button>%</button></td>
-          <td><button>CE</button></td>
-          <td><button>C</button></td>
-          <td><button>&lArr;</button></td>
+          <td><button @click="operand = String(operand*100)">%</button></td>
+          <td><button @click="clearAll">CE</button></td>
+          <td><button @click="clear">C</button></td>
+          <td><button @click="del">&lArr;</button></td>
         </tr>
         <tr>
-          <td><button @click="setOperation('1/x')">1&frasl;x</button></td>
-          <td><button @click="setOperation('sqr')">x<sup>2</sup></button></td>
-          <td><button @click="setOperation('sqrt')">&radic;x</button></td>
+          <td><button @click="operand = String(1/operand)">1&frasl;x</button></td>
+          <td><button @click="operand = String(operand * operand)">x<sup>2</sup></button></td>
+          <td><button @click="operand = String(Math.sqrt(operand))">&radic;x</button></td>
           <td><button @click="setOperation('/')">&divide;</button></td>
         </tr>
         <tr>
@@ -37,7 +40,7 @@
           <td><button @click="setOperation('-')">&minus;</button></td>
         </tr>
         <tr>
-          <td><button @click="setOperation('minus')">&plusmn;</button></td>
+          <td><button @click="operand = String(-operand)">&plusmn;</button></td>
           <td><button @click="appendNumber('0')">0</button></td>
           <td><button @click="appendNumber('.')">.</button></td>
           <td><button @click="result">=</button></td>
@@ -63,59 +66,55 @@
     
     methods: {
       appendNumber(digit) {
-        // check reasonable length
-        if (this.operand.length < 16)
-          this.operand += digit
+        // check if '.' already in string
+        if (digit == '.')
+          if (this.operand.indexOf('.') != -1)
+            digit = ''
         
-        // check if number supposed to be float
+        // check reasonable length
+        if (this.operand.length < 15) {
+          if (this.buffer.indexOf(/\D/) != -1 && this.buffer.indexOf('=') != -1) {
+            this.operand = digit
+            this.buffer = ''
+          }
+          else
+            this.operand += digit
+        }
+          
+        
+        // check first symbol zero
         if (this.operand[0] == 0 && digit != '.')
           this.operand = this.operand.slice(1)
       },
-      setOperation(op) {
-        let x = Number(this.operand)
-        // work only if buffer is empty
-        if (!this.buffer)
-          switch (op) {
-            case '+':
-              this.buffer = x
-              this.operand = ''
-              this.operation = '+'
-              break
-            case '-':
-              this.buffer = x
-              this.operand = ''
-              this.operation = '-'
-              break
-            case '*':
-              this.buffer = x
-              this.operand = ''
-              this.operation = '*'
-              break
-            case '/':
-              this.buffer = x
-              this.operand = ''
-              this.operation = '/'
-              break
-            case '1/x':
-              this.operand = (1/x).toFixed(5)
-              break
-            case 'sqr':
-              this.operand = String(x*x)
-              break
-            case 'sqrt':
-              this.operand = String(Math.sqrt(x))
-              break
-            case 'minus':
-              this.operand = String(-x)
-              break
-          }
-        },
+      
+      del() {
+        if (this.operand.length == 1)
+          this.operand = '0'
+        else
+          this.operand = this.operand.slice(0, this.operand.length - 1)
       },
+      
+      setOperation(op) {
+        this.operation = op
+        this.buffer = (this.operand == '0') ? '' : (this.operand + '' + op + '')
+        this.operand = '0'
+      },
+      
+      clear() {
+        this.operand = '0'
+      },
+      
+      clearAll() {
+        this.operand = '0'
+        this.buffer = ''
+      },
+      
       result() {
-        let x = Number(this.buffer)
+        let x = Number.parseFloat(this.buffer)
         let y = Number(this.operand)
-        let result
         
+        this.buffer += this.operand + ' = '
+
         switch (this.operation) {
           case '+':
             this.operand = String(x + y)
@@ -130,13 +129,17 @@
             this.operand = String(x / y)
             break
         }
-        
-        this.buffer = ''
       },
+    },
     
     computed: {
       fontSize() {
-        return 40/(this.operand.length + 10)
+        if (this.operand.length < 7)
+          return 4
+        else if (this.operand.length < 12)
+          return 2.5
+        else
+          return 1.7
       },
     },
   }
@@ -146,14 +149,28 @@
 
 <style scoped>
   .calculator {
-    height: 30rem;
+    height: 35rem;
   }
   
   .output {
+    position: relative;
+    
     display: flex;
     justify-content: flex-end;
+    align-items: flex-end;
     
-    font-size: 3rem;
+    height: 6rem;
+  }
+  
+  p {
+    line-height: normal;
+    margin: 0;
+  }
+  
+  .buffer {
+    position: absolute;
+    right: 0;
+    top: 0;
   }
   
   table {
