@@ -2,8 +2,8 @@
 
   <nav class="card center">
     <h1>{{ title }}</h1>
-    <div>
-      <button v-for="(app, index) in appsList" :key="index" class="btn" :class="{'primary': app.isActive}" @click="changeApp(app.name, index)">
+    <div class="button-list">
+      <button class="btn" :class="{'primary': app.isActive}" @click="changeApp(app.name, index)" v-for="(app, index) in appsList" :key="index">
         {{ app.name }}
       </button>
     </div>
@@ -42,6 +42,14 @@
 </script>
 
 
-<style>
+<style scoped>
+  .button-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
+  button {
+    margin: 5px 10px;
+  }
 </style>

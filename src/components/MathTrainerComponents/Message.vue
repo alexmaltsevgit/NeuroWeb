@@ -26,7 +26,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 300px;
+    height: 350px;
     
     transition: 1s linear;
   }

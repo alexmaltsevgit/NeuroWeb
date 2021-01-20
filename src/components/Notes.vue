@@ -9,8 +9,8 @@
     <hr>
     <ul class="list" v-if="notes.length">
       <li class="list-item" :class="{'list-item--marked': notes[index].isMarked}" :id="'note' + index" v-for="(note, index) in notes" :key="index">
-        {{ notes[index].noteText }}
-        <div>
+        <div class="text"> {{ notes[index].noteText }} </div>
+        <div class="notes-control">
           <button class="btn warning" @click="markNote(index)">{{ (notes[index].isMarked) ? "unmark" : "mark" }}</button>
           <button class="btn danger" @click="deleteNote(index)">delete</button>
         </div>
@@ -60,7 +60,6 @@
 <style scoped>
   .note-input {
     display: flex;
-    width: 60%;
   }
 
   .add-note {
@@ -71,11 +70,40 @@
     padding-left: 1rem;
   }
 
+  .text {
+    display: flex;
+    overflow: hidden;
+  }
+
   .list-item--marked {
     background: #ffc7c0;
   }
 
   .list-item--marked:hover {
     background-color: #ffb4aa;
+  }
+
+  @media (min-width: 800px) {
+    .note-input {
+      width: 60%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .note-input {
+      display: block;
+    }
+
+    .list-item {
+      flex-direction: column;
+    }
+
+    .notes-control {
+      margin: 1rem 0;
+    }
+
+    .add-note {
+      margin: 0.6rem 0;
+    }
   }
 </style>

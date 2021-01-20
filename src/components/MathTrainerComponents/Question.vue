@@ -4,7 +4,7 @@
     <h1>Math Trainer</h1>
     <h2>{{ x }} + {{ y }} = ?</h2>
     <div class="button-list">
-      <div class="btn primary" v-for="(answer, index) in answers" :key="index" @click="changeState(answer)">{{ answer }}</div>
+      <button class="btn primary" v-for="(answer, index) in answers" :key="index" @click="changeState(answer)">{{ answer }}</button>
     </div>
   </div>
 
@@ -63,7 +63,7 @@
 
 <style scoped>
   .card {
-    height: 300px;
+    height: 350px;
   }
   
   h2 {
@@ -73,6 +73,13 @@
   
   .button-list {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  button {
+    font-size: 1rem;
+    width: 40%;
+    margin: 5px 10px;
   }
 </style>
