@@ -1,12 +1,13 @@
 <template>
 
-  <div>
-    <app-navigation @onAppSelect="changeApp"></app-navigation>
-    <app-counter v-if="state == 'counter'"></app-counter>
-    <app-notes v-if="state == 'notes'"></app-notes>
-    <app-math-trainer v-if="state == 'math trainer'"></app-math-trainer>
-    <app-calculator v-if="state == 'calculator'"></app-calculator>
-  </div>
+  <app-navigation @onAppSelect="changeApp"></app-navigation>
+  <app-counter v-if="state == 'counter'"></app-counter>
+  <app-notes v-if="state == 'notes'"></app-notes>
+  <app-math-trainer v-if="state == 'math trainer'"></app-math-trainer>
+  <app-calculator v-if="state == 'calculator'"></app-calculator>
+  <app-clock v-if="state == 'clock'"></app-clock>
+  <app-timer v-if="state == 'timer'"></app-timer>
+  <app-stopwatch v-if="state == 'stopwatch'"></app-stopwatch>
 
 </template>
 
@@ -16,6 +17,10 @@
   import AppNotes from './components/Notes.vue'
   import AppMathTrainer from './components/MathTrainer.vue'
   import AppCalculator from './components/Calculator.vue'
+  import AppClock from './components/Clock.vue'
+  import AppTimer from './components/Timer.vue'
+  import AppStopwatch from './components/Stopwatch.vue'
+
 
   export default {
     name: 'App',
@@ -25,6 +30,9 @@
       AppNotes,
       AppMathTrainer,
       AppCalculator,
+      AppClock,
+      AppTimer,
+      AppStopwatch
     },
     
     

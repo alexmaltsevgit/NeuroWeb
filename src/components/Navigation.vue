@@ -23,7 +23,10 @@
           {name: 'counter', isActive: false},
           {name: 'notes', isActive: false},
           {name: 'math trainer', isActive: false},
-          {name: 'calculator', isActive: false}
+          {name: 'calculator', isActive: false},
+          {name: 'clock', isActive: false},
+          {name: 'timer', isActive: false},
+          {name: 'stopwatch', isActive: false},
         ],
       }
     },
@@ -47,6 +50,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    
+    width: 100%;
+    max-width: 600px;
   }
 
   button {

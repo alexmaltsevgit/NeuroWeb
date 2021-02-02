@@ -6,7 +6,9 @@
       <input type="textarea" placeholder="Your note" v-model="inputNote" @keypress.enter="addNewNote">
       <button class="btn add-note" @click="addNewNote">add note</button>
     </div>
+    
     <hr>
+    
     <ul class="list" v-if="notes.length">
       <li class="list-item" :class="{'list-item--marked': notes[index].isMarked}" :id="'note' + index" v-for="(note, index) in notes" :key="index">
         <div class="text"> {{ notes[index].noteText }} </div>
@@ -53,7 +55,6 @@
       }
     }
   }
-
 </script>
 
 
