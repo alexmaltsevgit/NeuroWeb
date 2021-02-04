@@ -25,12 +25,10 @@
       async changeState(answer) {
         if (answer === this.x + this.y) {
           let msg = "Good job!"
-          console.log(msg)
           await this.$emit('changeState', true, msg)
         }
         else {
           let msg = `${this.x} + ${this.y} = ${this.x + this.y}`
-          console.log(msg)
           await this.$emit('changeState', false, msg)
         }
       }

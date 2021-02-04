@@ -108,10 +108,15 @@
 <style scoped>
   .form-control {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
   
   .input-item {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   input {
@@ -136,5 +141,13 @@
   
   input[type=number] {
     -moz-appearance: textfield;
+  }
+  
+  
+  /* Media */
+  @media (max-width: 530px) {
+    .input-item {
+      width: 100%;
+    }
   }
 </style>

@@ -24,7 +24,6 @@
           {name: 'notes', isActive: false},
           {name: 'math trainer', isActive: false},
           {name: 'calculator', isActive: false},
-          {name: 'clock', isActive: false},
           {name: 'timer', isActive: false},
           {name: 'stopwatch', isActive: false},
         ],

@@ -86,6 +86,13 @@
 <style scoped>
   .btn {
     transition: background-color .1s ease-out;
+    margin: .3rem;
+  }
+  
+  .button-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .danger {
