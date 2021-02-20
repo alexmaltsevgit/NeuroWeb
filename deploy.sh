@@ -1,18 +1,8 @@
-#!/usr/bin/env sh
+#npm run build
 
-# abort on errors
-set -e
-
-# build
-npm run build
-
-# navigate into the build output directory
 cd dist
 
-git init
-git add -A
-git commit -m 'deploy'
-
-git push -f git@github.com:alexmaltsevgit/vuelrn.git main:gh-pages
-
-cd -
+git checkout gh-pages
+git add .
+git commit -m "deploy"
+git push

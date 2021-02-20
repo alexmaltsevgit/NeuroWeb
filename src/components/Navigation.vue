@@ -31,8 +31,8 @@
     },
     
     methods: {
-      async changeApp(name, index) {
-        await this.$emit('onAppSelect', name)
+      changeApp(name, index) {
+        this.$emit('onAppSelect', name)
         for (let item in this.appsList) {
           this.appsList[item].isActive = false
         }
